@@ -1,55 +1,93 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-const reviews = [
-    {
-        id: 1,
-        name: "Priya Das",
-        rating: 5,
-        text: "The best waffles in Jharsuguda! The Nutella waffle is absolutely divine. A must-visit place for dessert lovers.",
-        date: "2 days ago"
-    },
-    {
-        id: 2,
-        name: "Rahul Sharma",
-        rating: 5,
-        text: "Amazing ambiance and even better shakes. The service is quick and the staff is very polite. Highly recommended!",
-        date: "1 week ago"
-    },
-    {
-        id: 3,
-        name: "Sneha Patel",
-        rating: 4,
-        text: "Great place to hang out with friends. The prices are reasonable and the quality is top-notch. Love the variety.",
-        date: "2 weeks ago"
-    },
-    {
-        id: 4,
-        name: "Amit Kumar",
-        rating: 5,
-        text: "Finally a good dessert spot in JSG! The Belgian chocolate waffle is my favorite. Will definitely come back.",
-        date: "3 weeks ago"
-    }
-];
+interface Review {
+    id: number;
+    name: string;
+    rating: number;
+    text: string;
+    created_at: string;
+}
 
 const Reviews: React.FC = () => {
+    const [reviews, setReviews] = useState<Review[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        fetchReviews();
+    }, []);
+
+    const fetchReviews = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('reviews')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(10);
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                setReviews(data);
+            } else {
+                // Fallback data if no reviews in DB
+                setReviews([
+                    {
+                        id: 1,
+                        name: "Priya Das",
+                        rating: 5,
+                        text: "The best waffles in Jharsuguda! The Nutella waffle is absolutely divine. A must-visit place for dessert lovers.",
+                        created_at: "2 days ago"
+                    },
+                    {
+                        id: 2,
+                        name: "Rahul Sharma",
+                        rating: 5,
+                        text: "Amazing ambiance and even better shakes. The service is quick and the staff is very polite. Highly recommended!",
+                        created_at: "1 week ago"
+                    }
+                ]);
+            }
+        } catch (error) {
+            console.error('Error fetching reviews:', error);
+            // Fallback on error
+            setReviews([
+                {
+                    id: 1,
+                    name: "Priya Das",
+                    rating: 5,
+                    text: "The best waffles in Jharsuguda! The Nutella waffle is absolutely divine. A must-visit place for dessert lovers.",
+                    created_at: "2 days ago"
+                }
+            ]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (reviews.length === 0) return;
         const timer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % reviews.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, []);
+    }, [reviews]);
 
     const nextReview = () => {
+        if (reviews.length === 0) return;
         setCurrentIndex((prev) => (prev + 1) % reviews.length);
     };
 
     const prevReview = () => {
+        if (reviews.length === 0) return;
         setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
     };
+
+    if (loading) return <div className="py-20 text-center">Loading reviews...</div>;
+    if (reviews.length === 0) return null;
 
     return (
         <section id="reviews" className="py-20 bg-brand-cream relative overflow-hidden">
@@ -127,7 +165,11 @@ const Reviews: React.FC = () => {
 
                                         <div className="flex flex-col items-center">
                                             <h4 className="text-lg font-bold text-brand-brown">{reviews[currentIndex].name}</h4>
-                                            <span className="text-sm text-gray-500">{reviews[currentIndex].date}</span>
+                                            <span className="text-sm text-gray-500">
+                                                {new Date(reviews[currentIndex].created_at).toLocaleDateString() === 'Invalid Date'
+                                                    ? reviews[currentIndex].created_at
+                                                    : new Date(reviews[currentIndex].created_at).toLocaleDateString()}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

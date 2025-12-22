@@ -1,27 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import MenuSection from './components/MenuSection';
-import MonthlySpecials from './components/MonthlySpecials';
-import Offers from './components/Offers';
-import About from './components/About';
 import Footer from './components/Footer';
-import Reviews from './components/Reviews';
+import Home from './pages/Home';
+import ReviewPage from './pages/ReviewPage';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-orange selection:text-white">
-      <Navbar />
-      <main>
-        <Hero />
-        <MonthlySpecials />
-        <MenuSection />
-        <Offers />
-        <Reviews />
-        <About />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-orange selection:text-white flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/review" element={<ReviewPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
