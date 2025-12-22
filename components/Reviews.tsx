@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight, Utensils } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 interface Review {
@@ -8,6 +8,7 @@ interface Review {
     name: string;
     rating: number;
     text: string;
+    item_ordered?: string;
     created_at: string;
 }
 
@@ -40,6 +41,7 @@ const Reviews: React.FC = () => {
                         name: "Priya Das",
                         rating: 5,
                         text: "The best waffles in Jharsuguda! The Nutella waffle is absolutely divine. A must-visit place for dessert lovers.",
+                        item_ordered: "Hazelnut Heaven Nutella",
                         created_at: "2 days ago"
                     },
                     {
@@ -47,6 +49,7 @@ const Reviews: React.FC = () => {
                         name: "Rahul Sharma",
                         rating: 5,
                         text: "Amazing ambiance and even better shakes. The service is quick and the staff is very polite. Highly recommended!",
+                        item_ordered: "Hazelnut Dream (Nutella)",
                         created_at: "1 week ago"
                     }
                 ]);
@@ -60,6 +63,7 @@ const Reviews: React.FC = () => {
                     name: "Priya Das",
                     rating: 5,
                     text: "The best waffles in Jharsuguda! The Nutella waffle is absolutely divine. A must-visit place for dessert lovers.",
+                    item_ordered: "Hazelnut Heaven Nutella",
                     created_at: "2 days ago"
                 }
             ]);
@@ -132,7 +136,7 @@ const Reviews: React.FC = () => {
                         </button>
                     </div>
 
-                    <div className="relative h-[300px] md:h-[250px]">
+                    <div className="relative h-[350px] md:h-[300px]">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentIndex}
@@ -152,16 +156,23 @@ const Reviews: React.FC = () => {
                                                     key={i}
                                                     size={20}
                                                     className={`${i < reviews[currentIndex].rating
-                                                            ? "text-brand-yellow fill-brand-yellow"
-                                                            : "text-gray-300"
+                                                        ? "text-brand-yellow fill-brand-yellow"
+                                                        : "text-gray-300"
                                                         }`}
                                                 />
                                             ))}
                                         </div>
 
-                                        <p className="text-xl md:text-2xl text-brand-dark mb-8 italic leading-relaxed">
+                                        <p className="text-xl md:text-2xl text-brand-dark mb-6 italic leading-relaxed">
                                             "{reviews[currentIndex].text}"
                                         </p>
+
+                                        {reviews[currentIndex].item_ordered && (
+                                            <div className="flex items-center gap-2 text-brand-orange font-medium mb-6 bg-brand-orange/10 px-4 py-1 rounded-full text-sm">
+                                                <Utensils size={14} />
+                                                <span>Ordered: {reviews[currentIndex].item_ordered}</span>
+                                            </div>
+                                        )}
 
                                         <div className="flex flex-col items-center">
                                             <h4 className="text-lg font-bold text-brand-brown">{reviews[currentIndex].name}</h4>

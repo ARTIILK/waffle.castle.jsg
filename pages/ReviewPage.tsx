@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { MENU_ITEMS } from '../data/menuData';
 
 const ReviewPage: React.FC = () => {
     const [name, setName] = useState('');
     const [rating, setRating] = useState(5);
     const [text, setText] = useState('');
+    const [selectedItem, setSelectedItem] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
@@ -18,7 +20,12 @@ const ReviewPage: React.FC = () => {
         try {
             const { error } = await supabase
                 .from('reviews')
-                .insert([{ name, rating, text }]);
+                .insert([{
+                    name,
+                    rating,
+                    text,
+                    item_ordered: selectedItem || null
+                }]);
 
             if (error) throw error;
 
@@ -26,6 +33,7 @@ const ReviewPage: React.FC = () => {
             setName('');
             setRating(5);
             setText('');
+            setSelectedItem('');
         } catch (error) {
             console.error('Error submitting review:', error);
             setMessage({ type: 'error', text: 'Failed to submit review. Please try again.' });
@@ -51,8 +59,8 @@ const ReviewPage: React.FC = () => {
                 {message && (
                     <div
                         className={`p-4 rounded-lg mb-6 text-center font-medium ${message.type === 'success'
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-red-100 text-red-800'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
                             }`}
                     >
                         {message.text}
@@ -76,6 +84,25 @@ const ReviewPage: React.FC = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="item" className="block text-sm font-bold text-brand-brown mb-2">
+                            What did you order? (Optional)
+                        </label>
+                        <select
+                            id="item"
+                            value={selectedItem}
+                            onChange={(e) => setSelectedItem(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg border-2 border-brand-orange/20 focus:border-brand-orange focus:outline-none transition-colors bg-white"
+                        >
+                            <option value="">Select an item...</option>
+                            {MENU_ITEMS.map((item) => (
+                                <option key={item.id} value={item.name}>
+                                    {item.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
                         <label className="block text-sm font-bold text-brand-brown mb-2">
                             Rating
                         </label>
@@ -90,8 +117,8 @@ const ReviewPage: React.FC = () => {
                                     <Star
                                         size={32}
                                         className={`${star <= rating
-                                                ? 'text-brand-yellow fill-brand-yellow'
-                                                : 'text-gray-300'
+                                            ? 'text-brand-yellow fill-brand-yellow'
+                                            : 'text-gray-300'
                                             }`}
                                     />
                                 </button>
