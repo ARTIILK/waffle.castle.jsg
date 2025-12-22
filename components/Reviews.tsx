@@ -199,6 +199,15 @@ const Reviews: React.FC = () => {
                             />
                         ))}
                     </div>
+
+                    <div className="text-center mt-12">
+                        <a
+                            href="/review"
+                            className="inline-flex items-center gap-2 bg-brand-brown text-white px-8 py-3 rounded-full font-bold hover:bg-brand-orange transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        >
+                            Write a Review <ChevronRight size={20} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
