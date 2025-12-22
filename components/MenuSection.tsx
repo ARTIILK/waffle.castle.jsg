@@ -28,12 +28,11 @@ const MenuSection: React.FC = () => {
         
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-brand-brown display-font mb-6">
-            Our <span className="text-brand-orange underline decoration-wavy decoration-brand-yellow decoration-4 underline-offset-4">Menu</span>
+            Our <span className="text-brand-orange underline decoration-wavy decoration-brand-yellow decoration-4 underline-offset-4">Belgian Menu</span>
           </h2>
-          <p className="text-brand-brown/60 text-lg">Pure indulgence in every bite.</p>
+          <p className="text-brand-brown/60 text-lg">Indulge in the best <span className="font-semibold">chocolate waffles in Jharsuguda</span>.</p>
         </div>
 
-        {/* Clean Text-based Tabs */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
           {categories.map((cat) => (
             <button
@@ -56,7 +55,6 @@ const MenuSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Menu Grid - Simple Fade Transition */}
         <motion.div 
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10"
@@ -101,7 +99,7 @@ const MenuSection: React.FC = () => {
 
         {filteredItems.length === 0 && (
            <div className="text-center py-20 text-gray-400">
-             <p>Select a category to view items.</p>
+             <p>View our wide range of <span className="text-brand-orange font-bold">waffles in Jharsuguda</span>.</p>
            </div>
         )}
 

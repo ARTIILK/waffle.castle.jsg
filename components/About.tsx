@@ -9,15 +9,15 @@ const About: React.FC = () => {
           
           <div className="lg:w-1/2">
             <h2 className="text-4xl font-bold text-brand-brown display-font mb-6">
-              Bringing Royal Sweetness to <span className="text-brand-orange">Jharsuguda</span>
+              The Most <span className="text-brand-orange">Instagrammable Cafe</span> in Jharsuguda
             </h2>
             <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
               <p>
-                Waffle Castle isn't just about desserts; it's about creating small moments of joy. 
-                When we decided to open our outlet here in <strong>JSG</strong>, we wanted to create a cozy spot where friends can laugh over shakes and families can share a waffle.
+                Waffle Castle isn't just a <span className="font-semibold">waffle shop in Jharsuguda</span>; it's a destination for premium chocolate lovers. 
+                As a <span className="font-semibold">trending cafe in JSG</span>, we focus on delivering the perfect crunch in every bite.
               </p>
               <p>
-                Every batter is freshly whisked, every chocolate drizzle is generous, and every guest is treated like royalty. Whether you are craving a late-night treat or a mid-day energy boost, our doors are open.
+                Whether you are looking for a <span className="font-semibold">couple cafe in Jharsuguda</span> or a fun <span className="font-semibold">family dessert place</span>, our outlet near the bus stand is the local favorite for <span className="font-semibold">handmade waffles in Odisha</span>.
               </p>
             </div>
             
@@ -26,27 +26,27 @@ const About: React.FC = () => {
                     <div className="bg-brand-yellow w-12 h-12 rounded-full flex items-center justify-center text-brand-brown mx-auto mb-2 shadow-sm">
                         <Heart size={24} fill="currentColor" />
                     </div>
-                    <span className="font-bold text-brand-brown text-sm">Made with Love</span>
+                    <span className="font-bold text-brand-brown text-sm">Fresh Waffles</span>
                 </div>
                 <div className="text-center">
                     <div className="bg-brand-yellow w-12 h-12 rounded-full flex items-center justify-center text-brand-brown mx-auto mb-2 shadow-sm">
                         <Users size={24} />
                     </div>
-                    <span className="font-bold text-brand-brown text-sm">Youth Friendly</span>
+                    <span className="font-bold text-brand-brown text-sm">Friends & Family</span>
                 </div>
                 <div className="text-center">
                     <div className="bg-brand-yellow w-12 h-12 rounded-full flex items-center justify-center text-brand-brown mx-auto mb-2 shadow-sm">
                         <MapPin size={24} />
                     </div>
-                    <span className="font-bold text-brand-brown text-sm">Local Favorite</span>
+                    <span className="font-bold text-brand-brown text-sm">JSG Station Area</span>
                 </div>
             </div>
           </div>
 
           <div className="lg:w-1/2 w-full">
             <div className="grid grid-cols-2 gap-4">
-                <img src="https://picsum.photos/300/400?random=50" className="rounded-2xl w-full h-64 object-cover mt-8 shadow-lg rotate-2" alt="Shop Interior" />
-                <img src="https://picsum.photos/300/400?random=51" className="rounded-2xl w-full h-64 object-cover shadow-lg -rotate-2" alt="Happy Customers" />
+                <img src="https://picsum.photos/300/400?random=50" className="rounded-2xl w-full h-64 object-cover mt-8 shadow-lg rotate-2" alt="New cafe in Jharsuguda" />
+                <img src="https://picsum.photos/300/400?random=51" className="rounded-2xl w-full h-64 object-cover shadow-lg -rotate-2" alt="Best waffles in Jharsuguda" />
             </div>
           </div>
 

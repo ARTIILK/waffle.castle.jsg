@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Timer } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
@@ -13,13 +13,12 @@ const Hero: React.FC = () => {
     };
     
     checkOffer();
-    const timer = setInterval(checkOffer, 1000); // Check every second just in case
+    const timer = setInterval(checkOffer, 1000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section id="hero" className="relative pt-28 pb-16 lg:pt-40 lg:pb-32 overflow-hidden bg-brand-cream">
-      {/* Abstract CSS Background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-yellow/20 rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/4"></div>
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-orange/10 rounded-full blur-[80px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
 
@@ -54,7 +53,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-xl text-brand-brown/70 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-            Experience the royal crunch. Freshly baked Belgian waffles loaded with premium chocolate, fruits, and magic. Now serving happiness in Jharsuguda.
+            Searching for the <span className="text-brand-brown font-bold">best waffle in Jharsuguda</span>? Experience the royal crunch of our fresh Belgian waffles. The most <span className="text-brand-brown font-bold">popular dessert cafe in JSG</span> is now open!
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -69,23 +68,22 @@ const Hero: React.FC = () => {
 
         </motion.div>
 
-        {/* Text-based decorative elements instead of images */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-5xl border-t border-brand-brown/10 pt-12">
             <div className="text-center">
                 <h3 className="text-4xl font-bold text-brand-orange display-font mb-2">20+</h3>
-                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Waffle Varieties</p>
+                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Belgian Varieties</p>
             </div>
             <div className="text-center">
                 <h3 className="text-4xl font-bold text-brand-orange display-font mb-2">100%</h3>
-                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Eggless</p>
+                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Eggless Treats</p>
             </div>
             <div className="text-center">
                 <h3 className="text-4xl font-bold text-brand-orange display-font mb-2">4.8</h3>
-                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Customer Rating</p>
+                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Top Rated JSG</p>
             </div>
             <div className="text-center">
                 <h3 className="text-4xl font-bold text-brand-orange display-font mb-2">30min</h3>
-                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">Avg. Delivery</p>
+                <p className="text-brand-brown font-bold text-sm uppercase tracking-wider">JSG Delivery</p>
             </div>
         </div>
 
