@@ -6,6 +6,7 @@ import MonthlySpecials from './components/MonthlySpecials';
 import Offers from './components/Offers';
 import About from './components/About';
 import Footer from './components/Footer';
+import Reviews from './components/Reviews';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <MonthlySpecials />
         <MenuSection />
         <Offers />
+        <Reviews />
         <About />
       </main>
       <Footer />
