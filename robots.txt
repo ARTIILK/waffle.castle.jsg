@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://wafflecastlejsg.vercel.app/sitemap.xml
